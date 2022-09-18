@@ -43,29 +43,33 @@ function Main(props) {
   }, [api.query.bhdao])
 
   return (
-    <>
-    <Grid.Column>
-      <Card centered>
-        <Card.Content textAlign="center">
-          <Statistic label="Number of Contributors" value={contributor} />
-        </Card.Content>
-      </Card>
-    </Grid.Column> 
-    <Grid.Column> 
-      <Card centered>
-        <Card.Content textAlign="center">
-          <Statistic label="Number of Collectors" value={collector} />
-        </Card.Content>
-      </Card>
-    </Grid.Column>
-    <Grid.Column>
-      <Card centered>
-        <Card.Content textAlign="center">
-          <Statistic label="Number of Qualifiers" value={qualifier} />
-        </Card.Content>
-      </Card>
-    </Grid.Column>
-    </>
+    
+        <Grid stackable columns="equal">
+          <Grid.Row>
+          <Grid.Column>
+            <Card centered>
+              <Card.Content textAlign="center">
+                <Statistic label="Number of Contributors" value={contributor} />
+              </Card.Content>
+            </Card>
+          </Grid.Column> 
+          <Grid.Column> 
+            <Card centered>
+              <Card.Content textAlign="center">
+                <Statistic label="Number of Collectors" value={collector} />
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+          <Grid.Column>
+            <Card centered>
+              <Card.Content textAlign="center">
+                <Statistic label="Number of Qualifiers" value={qualifier} />
+              </Card.Content>
+            </Card>
+          </Grid.Column>
+          </Grid.Row>
+        </Grid>
+    
   )
 }
 

@@ -67,6 +67,14 @@ function Main(props) {
             size="mini"
           />
         </Menu.Menu>
+        
+          <Menu.Item>
+            Upload
+          </Menu.Item>     
+          <Menu.Item>
+            Documents
+          </Menu.Item>  
+        
         <Menu.Menu position="right" style={{ alignItems: 'center' }}>
           {!currentAccount ? (
             <span>

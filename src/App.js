@@ -1,6 +1,10 @@
 import React, { createRef } from 'react'
 import {
-  Container,
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom"
+import {
   Dimmer,
   Loader,
   Grid,
@@ -13,7 +17,10 @@ import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 import { DeveloperConsole } from './substrate-lib/components'
 
 import AccountSelector from './AccountSelector'
-import Bhdao from './bhdao'
+import Bhdao from './Bhdao'
+import Upload from './Upload'
+import Documents from './Documents'
+import Document from './Document'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -50,19 +57,24 @@ function Main() {
   const contextRef = createRef()
 
   return (
+    
     <div ref={contextRef}>
       <Sticky context={contextRef}>
         <AccountSelector />
       </Sticky>
-      <Container>
-        <Grid stackable columns="equal">
-          <Grid.Row>
-            <Bhdao />
-          </Grid.Row>
-        </Grid>
-      </Container>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/bhdao" element={<Bhdao />} />
+        <Route path="/upload" element={<Upload />} />
+        <Route path="/documents" element={<Documents />} >
+          <Route path="/documents/:id" element={<Document />} />
+        </Route>
+      </Routes>
+      </BrowserRouter>
       <DeveloperConsole />
     </div>
+    
   )
 }
 
