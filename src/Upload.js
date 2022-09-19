@@ -1,35 +1,24 @@
 import React, {useState} from 'react'
-import { create as ipfsHttpClient } from 'ipfs-http-client'
+//import { create as ipfsHttpClient } from 'ipfs-http-client'
 //import {useNavigate} from 'react-router-dom'
 import { useSubstrateState } from './substrate-lib'
 import { Grid, Form, Button } from 'semantic-ui-react'
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+//const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
 
 const Upload = () => {
     const { api, currentAccount } = useSubstrateState()
     const [mintDisable,setMintDisable] = useState(false)
-    const [formState,setFormState] = useState({name: '',description: '',type:''})
-    const [docURL, setDocURL] = useState(null)
+    const [formState,setFormState] = useState({name: '',description: '',type:'',hash: ''})
+    //const [docURL, setDocURL] = useState(null)
 
     const getFromAcct = async () => {
-        const {
-          address,
-          meta: { source, isInjected },
-        } = currentAccount
     
-        if (!isInjected) {
-          return [currentAccount]
-        }
-    
-        // currentAccount is injected from polkadot-JS extension, need to return the addr and signer object.
-        // ref: https://polkadot.js.org/docs/extension/cookbook#sign-and-send-a-transaction
-        const injector = await web3FromSource(source)
-        return [address, { signer: injector.signer }]
-      }    
+        return currentAccount
+    }    
 
-
+/*
     const onHandleFileChange = async (e) => {
         const file = e.target.files[0]
         try {
@@ -47,25 +36,33 @@ const Upload = () => {
         }  
     }
 
+<Form.Field>
+                            <label>Upload Document</label>
+                            <input type="file" onChange={onHandleFileChange} />
+                        </Form.Field>
+*/
+
     const onHandleUpload = async (e) => {
         setMintDisable(true)
-        const {name, description, type} = formState
+        const {name, description, type, hash} = formState
 
-        if ( !name || !description || !type ) {
+        if ( !name || !description || !type || !hash ) {
             alert("Name and Description fields are necessary")
             return
         }
 
-
+/*
         if(!docURL) {
             alert("Your Document didn't upload to IPFS.")
             return
         }
+*/
+        const fromAcct = await getFromAcct()
 
-        //const fromAcct = await getFromAcct()
-
-        const call1 = api.tx.bhdao.createDocument(name, description, type,docURL)
-        console.log(call1)
+        const call1 = api.tx.bhdao.createDocument(name, description, type,hash)
+        console.log(fromAcct)
+        const unsub = await call1.signAndSend(fromAcct, (result) => {console.log(result.toHuman())})
+        console.log(unsub)
         
     }
 
@@ -87,13 +84,16 @@ const Upload = () => {
                             onChange={e => setFormState({ ...formState, type: e.target.value })} />
                         </Form.Field>
                         <Form.Field>
-                            <label>Upload Document</label>
-                            <input type="file" onChange={onHandleFileChange} />
+                            <label>Hash</label>
+                            <input placeholder='IPFS Hash'
+                            onChange={e => setFormState({ ...formState, hash: e.target.value })} />
                         </Form.Field>
+                        
                         <Form.Field style={{ textAlign: 'center' }}>
                             <Button onClick={onHandleUpload} disabled={mintDisable} >
                                 Create Document</Button>
                         </Form.Field>
+                        
                         
                     </Form>
                 </Grid.Column>

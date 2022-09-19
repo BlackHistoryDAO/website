@@ -1,51 +1,47 @@
 import React, {useEffect, useState} from 'react'
 import { useSubstrateState } from './substrate-lib'
-import { Grid, Card, Button} from 'semantic-ui-react'
+import { Grid, Card} from 'semantic-ui-react'
 import { u8aToString, hexToU8a } from '@polkadot/util'
 
-const Documents = () => {
+const Verified = () => {
     const [docs, setDocs] = useState([])
-    const [nitems, setNitems] = useState(0)
-    const { api, currentAccount } = useSubstrateState()
-
-    const getFromAcct = async () => {
-    
-        return currentAccount
-    }    
+    const [titems, setTitems] = useState(0)
+    const [indexArray,setIndexArray] = useState([])
+    const { api } = useSubstrateState()    
 
 
     useEffect(() => {
         const queryNum = async () => {
             const result = await api.query.bhdao.totalItems();
-            setNitems(result);
+            setTitems(result);
         }
 
         queryNum()
     },[])
-    
+
     useEffect(() => {
         const queryDocs = async() => {
-            if (nitems > 0) {
+            if (titems > 0) {
                 let result = []
-                for (let i = 1; i <= nitems; ++i) {
+                let total = 0
+                let array = []
+                for (let i = 1; i <= titems; ++i) {
                     const r1 = await api.query.bhdao.documents(i)
-                    result.push(JSON.parse(r1))
+                    if (r1.status === "Verified") {
+                        total = total + 1
+                        result.push(JSON.parse(r1))
+                        array.push(i)
+                    }
+                    
                 }
                 setDocs(result)
+                setIndexArray(array)
             }
         }
 
         queryDocs()
-    },[nitems])
+    },[titems])
 
-    const onButtonClick = async (e) => {
-        const fromAcct = await getFromAcct()
-        console.log(e.target.value)
-        const call1 = api.tx.bhdao.createQualificationVoting(e.target.value)
-        console.log(fromAcct)
-        const unsub = await call1.signAndSend(fromAcct, (result) => {console.log(result.toHuman())})
-        console.log(unsub)
-    }
 
     return (
         <Grid >
@@ -53,11 +49,9 @@ const Documents = () => {
                 <Grid.Column>
                     <Card>
                         <Card.Content header={u8aToString(hexToU8a(doc.title)) } />
-                        <Card.Content meta={`Item No. `+(index+1)} />
+                        <Card.Content meta={`Item No. `+indexArray[index]} />
                         <Card.Content description={u8aToString(hexToU8a(doc.description)) }  />
                         <Card.Content description={doc.status} />
-                        <Card.Content><Button primary onClick={onButtonClick} value={index+1}>START
-                            </Button></Card.Content>
                     </Card>
                 </Grid.Column>
             )})}
@@ -65,4 +59,4 @@ const Documents = () => {
     )
 }
 
-export default Documents
+export default Verified

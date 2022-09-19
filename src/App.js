@@ -14,13 +14,14 @@ import {
 import 'semantic-ui-css/semantic.min.css'
 
 import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
-import { DeveloperConsole } from './substrate-lib/components'
 
 import AccountSelector from './AccountSelector'
 import Bhdao from './Bhdao'
 import Upload from './Upload'
 import Documents from './Documents'
-import Document from './Document'
+import Qualification from './Qualification'
+import Verification from './Verification'
+import Verified from './Verified'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -59,20 +60,21 @@ function Main() {
   return (
     
     <div ref={contextRef}>
-      <Sticky context={contextRef}>
-        <AccountSelector />
-      </Sticky>
-      <BrowserRouter>
+    <BrowserRouter>
+        <Sticky context={contextRef}>
+          <AccountSelector />
+        </Sticky>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/bhdao" element={<Bhdao />} />
+        <Route path="/substrate-node-template" element={<Bhdao />} />
         <Route path="/upload" element={<Upload />} />
-        <Route path="/documents" element={<Documents />} >
-          <Route path="/documents/:id" element={<Document />} />
-        </Route>
+        <Route path="/documents" element={<Documents />} />
+        <Route path="/qualification" element={<Qualification />} ></Route>
+        <Route path="/verification" element={<Verification />} ></Route>
+        <Route path="/verified" element={<Verified />} ></Route>
+        
       </Routes>
       </BrowserRouter>
-      <DeveloperConsole />
     </div>
     
   )
