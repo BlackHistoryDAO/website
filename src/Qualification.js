@@ -97,7 +97,8 @@ const Qualification = () => {
             {votes.map((vote,index) =>{ return (
                 <Grid.Column>
                     <Card>
-                        <Card.Content header={`Vote No. `+indexArray[index]} />
+                        <Card.Content header={`Vote ID `+indexArray[index]} />
+                        <Card.Content description={`Document ID `+vote.documentId} />
                         <Card.Content description={vote.status} />
                         
                         <Card.Content>

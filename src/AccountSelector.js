@@ -76,6 +76,7 @@ function Main(props) {
           SUBMITTED
         </Menu.Item>  
         <Menu.Item as={ Link } to="/qualification">QUALIFICATION</Menu.Item>
+        <Menu.Item as={ Link } to="/qualified">QUALIFIED</Menu.Item>
         <Menu.Item as={ Link } to="/verification">VERIFICATION</Menu.Item>
         <Menu.Item as={ Link } to="/verified">
           VERIFIED

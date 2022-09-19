@@ -22,6 +22,7 @@ import Documents from './Documents'
 import Qualification from './Qualification'
 import Verification from './Verification'
 import Verified from './Verified'
+import Qualified from './Qualified'
 
 function Main() {
   const { apiState, apiError, keyringState } = useSubstrateState()
@@ -72,7 +73,7 @@ function Main() {
         <Route path="/qualification" element={<Qualification />} ></Route>
         <Route path="/verification" element={<Verification />} ></Route>
         <Route path="/verified" element={<Verified />} ></Route>
-        
+        <Route path="/qualified" element={<Qualified />} ></Route>
       </Routes>
       </BrowserRouter>
     </div>

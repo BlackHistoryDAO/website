@@ -98,6 +98,7 @@ const Verification = () => {
                 <Grid.Column>
                     <Card>
                         <Card.Content header={`Vote No. `+indexArray[index]} />
+                        <Card.Content description={`Document ID `+vote.documentId} />
                         <Card.Content description={vote.status} />
                         
                         <Card.Content>
