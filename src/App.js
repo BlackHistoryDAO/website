@@ -16,7 +16,6 @@ import 'semantic-ui-css/semantic.min.css'
 import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 
 import AccountSelector from './AccountSelector'
-import Bhdao from './Bhdao'
 import Upload from './Upload'
 import Documents from './Documents'
 import Qualification from './Qualification'
