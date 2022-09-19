@@ -69,7 +69,7 @@ const Upload = () => {
     return (
         <Grid centered>
             <Grid.Row>
-                <Grid.Column>
+                <Grid.Column width={8}>
                     <Form>
                         <Form.Field>
                             <label>Title</label>
@@ -90,7 +90,7 @@ const Upload = () => {
                         </Form.Field>
                         
                         <Form.Field style={{ textAlign: 'center' }}>
-                            <Button onClick={onHandleUpload} disabled={mintDisable} >
+                            <Button secondary onClick={onHandleUpload} disabled={mintDisable} >
                                 Create Document</Button>
                         </Form.Field>
                         

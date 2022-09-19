@@ -111,7 +111,7 @@ const Verification = () => {
                             
                         </Card.Content>
                         <Card.Content>
-                            <Button primary onClick={onFinalizeClick} value={indexArray[index]}
+                            <Button secondary onClick={onFinalizeClick} value={indexArray[index]}
                             disabled={0 > vote.end }>
                                 Finalize</Button>
                         </Card.Content>

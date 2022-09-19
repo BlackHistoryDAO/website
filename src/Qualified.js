@@ -64,7 +64,7 @@ const Documents = () => {
                         <Card.Content meta={`Item No. `+(indexArray[index])} />
                         <Card.Content description={u8aToString(hexToU8a(doc.description)) }  />
                         <Card.Content description={doc.status} />
-                        <Card.Content><Button primary onClick={onButtonClick} value={indexArray[index]}>START
+                        <Card.Content><Button secondary onClick={onButtonClick} value={indexArray[index]}>START
                             </Button></Card.Content>
                     </Card>
                 </Grid.Column>

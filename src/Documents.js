@@ -50,13 +50,13 @@ const Documents = () => {
     return (
         <Grid >
             {docs.map((doc,index) =>{ return (
-                <Grid.Column>
+                <Grid.Column width={8}>
                     <Card>
                         <Card.Content header={u8aToString(hexToU8a(doc.title)) } />
                         <Card.Content meta={`Item No. `+(index+1)} />
                         <Card.Content description={u8aToString(hexToU8a(doc.description)) }  />
                         <Card.Content description={doc.status} />
-                        <Card.Content><Button primary onClick={onButtonClick} value={index+1}>START
+                        <Card.Content><Button secondary onClick={onButtonClick} value={index+1}>START
                             </Button></Card.Content>
                     </Card>
                 </Grid.Column>

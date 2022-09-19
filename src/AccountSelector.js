@@ -54,9 +54,8 @@ function Main(props) {
     <Menu
       attached="top"
       tabular
+      inverted
       style={{
-        backgroundColor: '#fff',
-        borderColor: '#fff',
         paddingTop: '1em',
         paddingBottom: '1em',
       }}
@@ -64,7 +63,7 @@ function Main(props) {
       <Container>
         <Menu.Menu>
           <Image
-            src={`${process.env.PUBLIC_URL}/assets/substrate-logo.png`}
+            src={`${process.env.PUBLIC_URL}/assets/bhdao.jpg`}
             size="mini"
           />
         </Menu.Menu>

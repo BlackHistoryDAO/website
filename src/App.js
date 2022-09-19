@@ -10,6 +10,7 @@ import {
   Grid,
   Sticky,
   Message,
+  Container,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 
@@ -65,16 +66,32 @@ function Main() {
         <Sticky context={contextRef}>
           <AccountSelector />
         </Sticky>
-      <Routes>
-        <Route path="/" element={<Bhdao />} />
-        <Route path="/substrate-node-template" element={<Bhdao />} />
-        <Route path="/upload" element={<Upload />} />
-        <Route path="/documents" element={<Documents />} />
-        <Route path="/qualification" element={<Qualification />} ></Route>
-        <Route path="/verification" element={<Verification />} ></Route>
-        <Route path="/verified" element={<Verified />} ></Route>
-        <Route path="/qualified" element={<Qualified />} ></Route>
-      </Routes>
+        <Container>
+        <style>
+        {`
+        html, body {
+          background-color: #D3D3D3 !important;
+          color: #fff;
+        }
+        label {
+          color: #fff;
+        }
+        
+        `}
+        </style>
+        <Routes>
+          <Route path="/" element={<Bhdao />} />
+          <Route path="/substrate-node-template" element={<Bhdao />} />
+          <Route path="/upload" element={<Upload />} />
+          <Route path="/documents" element={<Documents />} />
+          <Route path="/qualification" element={<Qualification />} ></Route>
+          <Route path="/verification" element={<Verification />} ></Route>
+          <Route path="/verified" element={<Verified />} ></Route>
+          <Route path="/qualified" element={<Qualified />} ></Route>
+        </Routes>
+
+        </Container>
+      
       </BrowserRouter>
     </div>
     
