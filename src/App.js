@@ -67,7 +67,6 @@ function Main() {
         </Sticky>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/substrate-node-template" element={<Bhdao />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/documents" element={<Documents />} />
         <Route path="/qualification" element={<Qualification />} ></Route>
