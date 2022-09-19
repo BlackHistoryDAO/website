@@ -16,6 +16,7 @@ import 'semantic-ui-css/semantic.min.css'
 import { SubstrateContextProvider, useSubstrateState } from './substrate-lib'
 
 import AccountSelector from './AccountSelector'
+import Bhdao from './Bhdao'
 import Upload from './Upload'
 import Documents from './Documents'
 import Qualification from './Qualification'
@@ -65,7 +66,8 @@ function Main() {
           <AccountSelector />
         </Sticky>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<Bhdao />} />
+        <Route path="/substrate-node-template" element={<Bhdao />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/documents" element={<Documents />} />
         <Route path="/qualification" element={<Qualification />} ></Route>
