@@ -42,7 +42,7 @@ function Main() {
           compact
           floating
           header="Error Connecting to Substrate"
-          content={`Connection to websocket '${errObj.target.url}' failed.`}
+          content={`Please check the repo https://github.com/BlackHistoryDAO/barnacle on how to proceed`}
         />
       </Grid.Column>
     </Grid>
@@ -71,7 +71,6 @@ function Main() {
         {`
         html, body {
           background-color: #D3D3D3 !important;
-          color: #fff;
         }
         label {
           color: #fff;
